@@ -13,14 +13,35 @@ public class MainClass {
 
         String sitePage;
         sitePage = "en.wikipedia.org";
+        String sitePageYan = "market.yandex.ru";
 
         //инициализация
         System.setProperty("webdriver.gecko.driver", "/home/alex/IdeaProjects/TestSelenium/drivers/geckodriver");
+        System.setProperty("webdriver.chrome.driver", "/home/alex/IdeaProjects/TestSelenium/drivers/chromedriver");
         WebDriver driver = new FirefoxDriver();
         driver.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS); //implicit timeout
         driver.manage().window().maximize();
 
-        driver.get("http://" + sitePage);
+        driver.get("http://" + sitePageYan);
+
+        //radioButton checkBox
+        driver.findElement(By.xpath("/html/body/div[1]/div/span/div[2]/noindex/div[2]/div/div/div/div[3]/a")).click();
+        driver.findElement(By.xpath("/html/body/div[1]/div[2]/div[7]/div/div/div[1]/div/div/div/div/div/div/div[2]/div[2]/ul/li[1]/div/a")).click();
+        driver.findElement(By.xpath("/html/body/div[1]/div[5]/div[2]/div[2]/div/div/div/div[3]/div/div[2]/div[3]/fieldset/ul/li[1]/div/a/label/div")).click();
+
+/*
+        //ссылки
+        WebElement link = driver.findElement(By.xpath("//li[@id='n-aboutsite']/a"));
+        System.out.println(link.getText());
+        link.click();
+
+
+        //работа с текстовыми полями
+        driver.findElement(By.xpath("//input[@id='searchInput']")).sendKeys("Selenium WebDriver");
+        driver.findElement(By.xpath("//form[@id='searchform']//input[last()]")).click();
+        System.out.println(driver.findElement(By.xpath("//div[@id='searchText']//input")).getAttribute("value"));
+        driver.findElement(By.xpath("//div[@id='searchText']//input")).clear();
+
 
         //поиск элементов
         WebElement link = driver.findElement(By.linkText("Log in"));
@@ -29,13 +50,13 @@ public class MainClass {
         WebElement li = driver.findElement(By.id("ca-viewsource"));
 
 
-        /*
+
         //формирование массива данных
         WebElement[] data = {
                 link,
                 searchField,
                 searchButton};
-         */
+
 
         //формирование листа данных
         List<WebElement> data = new ArrayList<>();
@@ -52,8 +73,8 @@ public class MainClass {
         }
 
         searchButton.click();
-
-       driver.quit();
+        */
+       // driver.quit();
 
     }
 
