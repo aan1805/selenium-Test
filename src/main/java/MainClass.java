@@ -19,7 +19,7 @@ public class MainClass {
         //инициализация
         System.setProperty("webdriver.gecko.driver", "/home/alex/IdeaProjects/TestSelenium/drivers/geckodriver");
         System.setProperty("webdriver.chrome.driver", "/home/alex/IdeaProjects/TestSelenium/drivers/chromedriver");
-        WebDriver browser = new FirefoxDriver();
+        WebDriver browser = new ChromeDriver();
         browser.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS); //implicit timeout
         browser.manage().window().maximize();
 
@@ -30,6 +30,7 @@ public class MainClass {
         browser.findElement(By.xpath("/html/body/div[1]/div[2]/div[7]/div/div/div[1]/div/div/div/div/div/div/div[2]/div[2]/ul/li[1]/div/a")).click();
         browser.findElement(By.xpath("/html/body/div[1]/div[5]/div[2]/div[2]/div/div/div/div[3]/div/div[2]/div[3]/fieldset/ul/li[1]/div/a/label/div")).click();
 
+        browser.get("http://" + sitePage);
 
         //ссылки
         WebElement link = browser.findElement(By.xpath("//li[@id='n-aboutsite']/a"));
@@ -48,6 +49,7 @@ public class MainClass {
         WebElement linkLog = browser.findElement(By.linkText("Log in"));
         WebElement searchField = browser.findElement(By.name("search"));
         WebElement searchButton = browser.findElement(By.xpath("//form[@id='searchform']//input[@id='searchButton']"));
+        browser.get("http://" + sitePage);
         WebElement li = browser.findElement(By.id("ca-viewsource"));
 
 
@@ -72,8 +74,6 @@ public class MainClass {
             //...
             iterator.next();
         }
-
-        searchButton.click();
 
         browser.quit();
 
