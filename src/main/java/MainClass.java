@@ -1,4 +1,5 @@
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -10,6 +11,9 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class MainClass {
+
+    static WebDriver browser;
+
     public static void main(String[] args) {
 
         String sitePage;
@@ -17,18 +21,25 @@ public class MainClass {
         String sitePageYan = "market.yandex.ru";
 
         //инициализация
-        System.setProperty("webdriver.gecko.driver", "/home/alex/IdeaProjects/TestSelenium/drivers/geckodriver");
-        System.setProperty("webdriver.chrome.driver", "/home/alex/IdeaProjects/TestSelenium/drivers/chromedriver");
-        WebDriver browser = new ChromeDriver();
+  //      System.setProperty("webdriver.gecko.driver", "/home/alex/aan1805/selenium-Test/drivers/geckodriver");
+        System.setProperty("webdriver.chrome.driver", "/home/alex/aan1805/selenium-Test/drivers/chromedriver");
+  //      System.setProperty("phantomjs.binary.path", "/home/alex/aan1805/selenium-Test/drivers/phantomjs");
+        browser = new ChromeDriver();
         browser.manage().timeouts().implicitlyWait(15, TimeUnit.SECONDS); //implicit timeout
         browser.manage().window().maximize();
 
         browser.get("http://" + sitePageYan);
 
+        //javascripts
+        JavascriptExecutor jse = (JavascriptExecutor)browser;
+        // jse.executeScript("alert('Hello World')");
+        jse.executeScript("window.scrollBy(0, 1000)", "");
+        jse.executeScript("window.scrollBy(0, -1000)", "");
+
         //radioButton checkBox
         browser.findElement(By.xpath("/html/body/div[1]/div/span/div[2]/noindex/div[2]/div/div/div/div[3]/a")).click();
-        browser.findElement(By.xpath("/html/body/div[1]/div[2]/div[7]/div/div/div[1]/div/div/div/div/div/div/div[2]/div[2]/ul/li[1]/div/a")).click();
-        browser.findElement(By.xpath("/html/body/div[1]/div[5]/div[2]/div[2]/div/div/div/div[3]/div/div[2]/div[3]/fieldset/ul/li[1]/div/a/label/div")).click();
+    //    browser.findElement(By.xpath("/html/body/div[1]/div[2]/div[7]/div/div/div[1]/div/div/div/div/div/div/div[2]/div[2]/ul/li[1]/div/a")).click();
+     //   browser.findElement(By.xpath("/html/body/div[1]/div[5]/div[2]/div[2]/div/div/div/div[3]/div/div[2]/div[3]/fieldset/ul/li[1]/div/a/label/div")).click();
 
         browser.get("http://" + sitePage);
 
